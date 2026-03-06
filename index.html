@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>product inventory management</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+
+<body>
+<header>
+    <nav
+        class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800 flex items-center justify-between">
+        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">inventory management
+                system</span>
+        </a>
+        <div class="flex items-center max-w-sm mx-auto">
+            <label for="simple-search" class="sr-only">Search</label>
+            <div class="relative w-full">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                    </svg>
+                </div>
+                <input type="text" id="simple-search"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                    placeholder="Search components..." required />
+            </div>
+            <button type="submit"
+                class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                </svg>
+                <span class="sr-only">Search</span>
+            </button>
+        </div>
+        <div class="AddBtn">
+            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded AddBtn button">
+                Add Product +
+            </button>
+        </div>
+    </nav>
+</header>
+
+
+<div class="tableContainer">
+    <table id="productTable" class="table-auto w-full text-left whitespace-no-wrap">
+        <thead>
+            <tr>
+                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">id#</th>
+                <th
+                    class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">
+                    Image</th>
+                <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Title</th>
+                <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Price</th>
+                <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Category
+                </th>
+
+                <th
+                    class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">
+                    Description</th>
+                <th
+                    class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">
+                    Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="border-b">
+                <td class="px-4 py-3">1</td>
+                <td class="px-4 py-3"><img
+                        src="data:image/jpeg;base64,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"
+                        alt="Laptop" class="w-16 h-16 object-cover"></td>
+                <td class="px-4 py-3">Laptop</td>
+                <td class="px-4 py-3">$999.99</td>
+                <td class="px-4 py-3">Electronics</td>
+                <td class="px-4 py-3">Lorem ipsum dolor sit amet. </td>
+                <td class="px-4 py-3">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">Edit</button>
+                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Delete</button>
+                </td>
+            </tr>
+            <tr class="border-b">
+                <td class="px-4 py-3">2</td>
+                <td class="px-4 py-3"><img
+                        src="https://png.pngtree.com/thumb_back/fh260/background/20240622/pngtree-running-and-sports-shoes-image_15805712.jpg"
+                        alt="Laptop" class="w-16 h-16 object-cover"></td>
+                <td class="px-4 py-3">shoes</td>
+                <td class="px-4 py-3">$999.99</td>
+                <td class="px-4 py-3">sports</td>
+                <td class="px-4 py-3">Lorem ipsum dolor sit amet. </td>
+                <td class="px-4 py-3">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">Edit</button>
+                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Delete</button>
+                </td>
+            </tr>
+            <tr class="border-b">
+                <td class="px-4 py-3">3</td>
+                <td class="px-4 py-3">
+                    <img
+                        src=https://images.pexels.com/photos/325876/pexels-photo-325876.jpeg?cs=srgb&dl=pexels-pixabay-325876.jpg&fm=jpg
+                        alt="Laptop" class="w-16 h-16 object-cover"></td>
+                <td class="px-4 py-3">clothes</td>
+                <td class="px-4 py-3">$999.99</td>
+                <td class="px-4 py-3">winter casual</td>
+                <td class="px-4 py-3">Lorem ipsum dolor sit amet. </td>
+                <td class="px-4 py-3">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">Edit</button>
+                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Delete</button>
+                </td>
+            </tr>
+            <!-- More rows can be added here -->
+        </tbody>
+    </table>
+</div>
+
+<div class="modal addProductmodal hidden transition-visibility duration-300" >
+    <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm addProductmodal">
+    
+    <div class="w-full max-w-lg bg-white dark:bg-gray-800 rounded-2xl shadow-2xl transform transition-all">
+        
+        <div class="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-700">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                Add New Product
+            </h3>
+            <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors closeBtn">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <form class="p-6 space-y-4 addProductForm">
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Product Title</label>
+                <input name="productName" type="text" placeholder="e.g. Wireless Headphones" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Price ($)</label>
+                    <input name="productPrice" type="number" placeholder="0.00" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-blue-500 outline-none dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Category</label>
+                    <select name="productCategory" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-blue-500 outline-none dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                        <option>Electronics</option>
+                        <option>Fashion</option>
+                        <option>Home</option>
+                        <option>Accessories</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
+                <textarea name="productDescription" rows="3" placeholder="Tell us about the product..." class="w-full px-4 py-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-blue-500 outline-none dark:bg-gray-700 dark:border-gray-600 dark:text-white"></textarea>
+            </div>
+
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Image URL</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none text-gray-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <input name="imageUrl" type="url" placeholder="https://example.com/image.jpg" class="w-full px-4 py-2.5 ps-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-blue-500 outline-none dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                </div>
+            </div>
+
+            <div class="pt-4 flex gap-3">
+                <button type="button" class="w-full px-4 py-2.5 text-sm font-medium text-gray-700 bg-gray-100 rounded-xl hover:bg-gray-200 transition-colors dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">
+                    Cancel
+                </button>
+                <button type="submit" class="w-full px-4 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-500/30 transition-all active:scale-95">
+                    Save Product
+            </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<script src="./js/main.js"></script>
+</body>
+
+</html>
