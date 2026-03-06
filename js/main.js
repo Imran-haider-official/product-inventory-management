@@ -1,6 +1,9 @@
 const addProductModal = document.querySelector('.addProductmodal');
+const editProductModal = document.querySelector('.editProductmodal');
 const addProductBtn = document.querySelector('button.AddBtn');
-const closeBtn = document.querySelector('.closeBtn');
+const addcloseBtn = document.querySelector('.addcloseBtn');
+// const editcloseBtn = document.querySelector('.editcloseBtn');
+
 
 //select form feilds
 
@@ -15,7 +18,7 @@ addProductBtn.addEventListener('click', () => {
     addProductModal.classList.remove('hidden');
 });
 
-closeBtn.addEventListener('click', () => {
+addcloseBtn.addEventListener('click', () => {
     addProductModal.classList.add('hidden');
     // Clear form fields
     productNameInput.value = '';
@@ -59,7 +62,7 @@ addProductForm.addEventListener('submit', (e) => {
 const addProduct = async (product) => {
     // Implementation for adding product to the table
     try {
-        await fetch('https://fakestoreapi.com/products', {
+        await fetch('https://fakestoreapi.com/product/id', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

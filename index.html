@@ -121,6 +121,8 @@
     </table>
 </div>
 
+<!-- add model -->
+
 <div class="modal addProductmodal hidden transition-visibility duration-300" >
     <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm addProductmodal">
     
@@ -128,9 +130,9 @@
         
         <div class="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-700">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                Add New Product
+               Add new product
             </h3>
-            <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors closeBtn">
+            <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors addcloseBtn">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
@@ -183,6 +185,75 @@
         </form>
     </div>
 </div>
+
+<!-- edit modal -->
+
+
+<div class="modal editProductmodal hidden transition-visibility duration-300" >
+    <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm addProductmodal">
+    
+    <div class="w-full max-w-lg bg-white dark:bg-gray-800 rounded-2xl shadow-2xl transform transition-all">
+        
+        <div class="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-700">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                Edit product
+            </h3>
+            <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors editcloseBtn">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <form class="p-6 space-y-4 addProductForm">
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Product Title</label>
+                <input name="productName" type="text" placeholder="e.g. Wireless Headphones" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Price ($)</label>
+                    <input name="productPrice" type="number" placeholder="0.00" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-blue-500 outline-none dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Category</label>
+                    <select name="productCategory" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-blue-500 outline-none dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                        <option>Electronics</option>
+                        <option>Fashion</option>
+                        <option>Home</option>
+                        <option>Accessories</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
+                <textarea name="productDescription" rows="3" placeholder="Tell us about the product..." class="w-full px-4 py-2.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-blue-500 outline-none dark:bg-gray-700 dark:border-gray-600 dark:text-white"></textarea>
+            </div>
+
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Image URL</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none text-gray-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <input name="imageUrl" type="url" placeholder="https://example.com/image.jpg" class="w-full px-4 py-2.5 ps-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-blue-500 outline-none dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                </div>
+            </div>
+
+            <div class="pt-4 flex gap-3">
+                <button type="button" class="w-full px-4 py-2.5 text-sm font-medium text-gray-700 bg-gray-100 rounded-xl hover:bg-gray-200 transition-colors dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">
+                    Cancel
+                </button>
+                <button type="submit" class="w-full px-4 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-500/30 transition-all active:scale-95">
+                    Save Product
+            </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
 </div>
 <script src="./js/main.js"></script>
 </body>
